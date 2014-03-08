@@ -8,6 +8,7 @@ struct Node{
  int val; 
  node *child[size];
  int flag;
+ node *next;
 };
 
 typedef struct Trie Trie_t;
@@ -15,12 +16,12 @@ struct Trie{
  node *root;
 };
 
-node* getNewNode(){
+node* getNewNode(int val){
  int i;
  node *pnode = NULL;
  pnode = (node *)malloc(sizeof(node));
  if(pnode){
-  pnode->val = 0;
+  pnode->val = val;
   for(i=0;i<size;i++){
 	pnode->child[i]=NULL;
   }
@@ -30,7 +31,7 @@ return pnode;
 }
 
 void Initialize(Trie_t *trie){
-  trie->root = getNewNode();
+  trie->root = getNewNode(0);
 }
 
 void insert(Trie_t *t, char string[]){
@@ -39,9 +40,10 @@ void insert(Trie_t *t, char string[]){
  int i;
  int val;
  for(i =0; i<len;i++){
-  val = (char)string[i]-(char)'a';
+  val = (char)string[i]- (char)'a';
   if(!node->child[val]){
-     node->child[val] = getNewNode();
+     node->child[val] = getNewNode(val);
+     node->next = node->child[val];
   }
   node = node->child[val];
   if(i==len-1){
@@ -54,14 +56,31 @@ int search(Trie_t *t, char string[]){
  node *node = t->root;
  int len = strlen(string);
  int i;
- int val;
+ int c=0,val,count=0;
  for(i=0;i<len;i++){
-   val = (char)string[i]- (char)'a';
+   val = (char)string[i] - (char)'a';
    if(!node->child[val]){
    	return 0;
    }
    node = node->child[val];
  }
+ printf("parent node: %d \n",node->val);
+ for(i=0;i<26;i++)
+ {	c =0;
+	if(node->child[i]!=0){
+	  count++;
+	  struct Node *temp = node->child[i];
+	  while(temp!=NULL){
+
+ 		int v = temp->val;
+		printf("child: %d : %c\n",c, v);
+		temp = temp->next;	
+		c++;
+	 }
+	printf("next \n");
+        }	
+ }
+ printf("count: %d \n", count); 
  if(node->flag)
    return 1;
  else
@@ -69,7 +88,7 @@ int search(Trie_t *t, char string[]){
 }
 
 int main(){
- char keys[][8]= {"the", "a", "there", "answer", "any", "by", "bye", "their"};
+ char keys[][8]= {"the", "their", "there", "answer", "any", "by", "bye", "then"};
  Trie_t trie_t;
  Initialize(&trie_t); 
  int i;
@@ -77,7 +96,7 @@ int main(){
  for(i =0;i<8;i++){
   insert(&trie_t, keys[i]);
  }
- if(search(&trie_t, "tha")){
+ if(search(&trie_t, "the")){
   printf("found \n\n");
  }
  else

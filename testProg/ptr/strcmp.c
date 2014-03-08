@@ -4,7 +4,7 @@ int strcmp(char *s, char *r)
 {
   for(;*s==*r;s++,r++)
   {
-	if(*s=='\0')
+	if(*s=='\0'&& *r=='\0')
 	  return 0;
    }
 	return *s - *r;
@@ -13,7 +13,7 @@ int strcmp(char *s, char *r)
 
 int main()
 {
-  char *s = "gel";
+  char *s = "Hel";
   char *r = "hel";
   printf("%d\n", strcmp(s, r));
 
