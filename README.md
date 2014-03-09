@@ -1,1 +1,1 @@
-Code Practice questions from GeeksForGeeks and other locations
+Implementation of problems on arrays, bits , strings, pthreads written in C 
