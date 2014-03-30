@@ -73,7 +73,7 @@ int search(Trie_t *t, char string[]){
 	  while(temp!=NULL){
 
  		int v = temp->val;
-		printf("child: %d : %c\n",c, v);
+		printf("child: %d : %c\n",c, (char)v);
 		temp = temp->next;	
 		c++;
 	 }
@@ -96,8 +96,9 @@ int main(){
  for(i =0;i<8;i++){
   insert(&trie_t, keys[i]);
  }
- if(search(&trie_t, "the")){
-  printf("found \n\n");
+int val = search(&trie_t, "the");
+ if(val>0){
+  printf("found: %d \n\n", val);
  }
  else
   printf("\n not found \n");

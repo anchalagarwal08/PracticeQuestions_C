@@ -1,7 +1,7 @@
 #include <stdio.h>
 void reverseWords(char* s);
 int main(){
-char arr[] = "geeks";
+char arr[] = "geeksforgeeks";
 char *s = arr;
 reverseWords(arr);
 printf("%s\n", *&s);
