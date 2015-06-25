@@ -7,11 +7,10 @@
 
 void swap(char *a, char *b)
 {
-	printf("a=%c, b=%c", *a, *b);
-	char *c;
-        *c=*a;
+	char c;
+        c=*a;
 	*a=*b;
-	*b=*c;	
+	*b=c;	
 }
 
 void sortRGB(char arr[], int len)
@@ -30,7 +29,7 @@ void sortRGB(char arr[], int len)
 			break;
 			case 'B':
 			swap(&arr[mid], &arr[high]);
-			mid++; high--;
+			high--;
 			break;
 
 		}
@@ -39,7 +38,7 @@ void sortRGB(char arr[], int len)
 	
 	for(i=0;i<len;i++)
 	{
-		printf("%c,", arr[i]);
+		printf(" %c, ", arr[i]);
 	}
 }
 
