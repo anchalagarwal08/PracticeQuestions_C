@@ -29,3 +29,12 @@ node* createBST()
  root->right->right->right = newNode(42);
  return root;
 }
+
+void inorderTraversal(node *root)
+{
+	if(root==NULL)
+	  return;
+	inorderTraversal(root->left);
+	printf("%d ,", root->data);
+	inorderTraversal(root->right);
+}
