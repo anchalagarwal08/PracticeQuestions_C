@@ -38,3 +38,4 @@ void inorderTraversal(node *root)
 	printf("%d ,", root->data);
 	inorderTraversal(root->right);
 }
+void contigSubseqSum(int *arr, int sum, int *size);

@@ -22,6 +22,7 @@ int lcs(char *x, char *y, int m , int n)
         }
         return arr[m][n];
 }
+/*For longest common palindrome, reverse the string and find LCS between those 2 strings*/
 /*int main()
 {
         char *x = "GXTXAYB";

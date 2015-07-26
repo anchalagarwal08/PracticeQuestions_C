@@ -3,7 +3,7 @@
 #include <stdlib.h>
 int main()
 {
-   char *str="hello girls";
+   char *str="hello   girls";
    int len = strlen(str);
    char *temp = (char*)malloc((len+1) * sizeof(char));
    int c=0, d=0;
