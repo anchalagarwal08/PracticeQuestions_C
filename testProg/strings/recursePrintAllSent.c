@@ -7,17 +7,17 @@
 #define C 3
 void printAllSentences(char *arr[R][C], int k, char *str[])
 {
-
+      int i=0,j=0;
 	if(k==C)
 	{
-		for (int j=0; j<R; j++)
+		for (j=0; j<R; j++)
 		{
 			printf("%s ", str[j]);
 		}
 		printf("\n");
 		return;
 	}
-	for(int i =0; i<C;i++)
+	for(i =0; i<C;i++)
 	{
 		if(arr[k][i]!=NULL){
 		   str[k] = arr[k][i];

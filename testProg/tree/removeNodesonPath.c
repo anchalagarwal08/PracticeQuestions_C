@@ -20,8 +20,30 @@ node *removeNodeOnPath(node *root, int sum, int k)
 	return root;
 }
 
-int main()
+node *removeNodesSumOnPath(node *root, int sum, int k)
 {
+	if(root==NULL)
+	  return NULL;
+
+//	int lsum = *sum + root->data;
+//	int rsum = lsum;
+	sum = sum+root->data;
+	root->left = removeNodesSumOnPath(root->left, sum, k);
+	root->right = removeNodesSumOnPath(root->right, sum, k);
+//	*sum = lsum>rsum?lsum:rsum;
+	if(root->left==NULL && root->right ==NULL)
+	{
+		if(sum<k){
+		free(root);
+		return NULL;
+		}
+	
+	}
+	return root;
+
+}
+int main()
+{/*
     int k = 4;
     node *root = newNode(1);
     root->left = newNode(2);
@@ -31,12 +53,31 @@ int main()
     root->left->left->left = newNode(7);
     root->right->right = newNode(6);
     root->right->right->left = newNode(8);
+  */
+  /*tree for sum problem sum>=k*/
+    int k = 45;
+    int sum=0;
+    struct Node *root = newNode(1);
+    root->left = newNode(2);
+    root->right = newNode(3);
+    root->left->left = newNode(4);
+    root->left->right = newNode(5);
+    root->right->left = newNode(6);
+    root->right->right = newNode(7);
+    root->left->left->left = newNode(8);
+    root->left->left->right = newNode(9);
+    root->left->right->left = newNode(12);
+    root->right->right->left = newNode(10);
+    root->right->right->left->right = newNode(11);
+    root->left->left->right->left = newNode(13);
+    root->left->left->right->right = newNode(14);
+    root->left->left->right->right->left = newNode(15);
+
     inorderTraversal(root);
-    node *new_root = removeNodeOnPath(root,1, k); 
+    node *new_root = removeNodesSumOnPath(root,0, k); 
     printf("\n after\n");
-    if(root)
-      printf("\n here \n");
-      printf("\n root data=%d\n", root->data);
+    if(new_root)
+      printf("\n here:%d \n", new_root->data);
       inorderTraversal(new_root);
     return 0;
 }

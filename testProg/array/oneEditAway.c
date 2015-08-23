@@ -35,7 +35,7 @@ bool findOneEditAway(char *str1, char *str2)
 int main()
 {
 	char *str1 = "pale";
-	char *str2 = "bake";
+	char *str2 = "pales";
 	printf("\n %d\n",findOneEditAway(str1,str2));
 	return 0;
 }
